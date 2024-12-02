@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pennypilot/features/auth/presentation/loginscreen.presentations.dart';
+import 'package:pennypilot/routes/navigation.routes.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -34,7 +35,12 @@ class _SignupScreenState extends State<SignupScreen> {
           SizedBox(
             height: 10,
           ),
-          ElevatedButton(onPressed: () {}, child: Text('Signup')),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MainNavigation()));
+              },
+              child: Text('Signup')),
           GestureDetector(
             onTap: () {
               Navigator.push(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pennypilot/features/auth/presentation/forgotpassword.presentations.dart';
 import 'package:pennypilot/features/auth/presentation/signupscreen.presentations.dart';
+import 'package:pennypilot/routes/navigation.routes.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -35,7 +36,12 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             height: 10,
           ),
-          ElevatedButton(onPressed: () {}, child: Text('Login')),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MainNavigation()));
+              },
+              child: Text('Login')),
           GestureDetector(
             onTap: () {
               Navigator.push(

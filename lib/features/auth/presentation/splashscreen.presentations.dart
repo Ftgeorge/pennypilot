@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:pennypilot/features/onboarding/main.onboarding.dart';
+import 'package:pennypilot/features/onboarding/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

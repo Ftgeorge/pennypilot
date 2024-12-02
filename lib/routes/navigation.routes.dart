@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:pennypilot/features/budget/budget_screen.dart';
+import 'package:pennypilot/features/goals/goals_screen.dart';
+import 'package:pennypilot/features/home/homescreen.dart';
+import 'package:pennypilot/features/settings/settings_screen.dart';
+import 'package:pennypilot/features/transaction/transaction_screen.dart';
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});
@@ -33,19 +38,19 @@ class _MainNavigationState extends State<MainNavigation> {
           indicatorColor: Colors.white,
           selectedIndex: currentPageIndex,
           destinations: <Widget>[
-            // Navigation destination for "For You" page
+            // Navigation destination for "Home" page
             NavigationDestination(
               selectedIcon: Icon(
-                MdiIcons.newspaper,
+                MdiIcons.home,
                 size: 32,
                 color: Colors.black,
               ),
               icon: Icon(
-                MdiIcons.newspaper,
+                MdiIcons.home,
                 size: 32,
                 color: Colors.grey,
               ),
-              label: 'For you',
+              label: 'Home',
             ),
 
             // Navigation destination for "Headlines" page
@@ -60,13 +65,13 @@ class _MainNavigationState extends State<MainNavigation> {
                 size: 32,
                 color: Colors.grey,
               ),
-              label: 'Headlines',
+              label: 'Transactions',
             ),
 
             // Navigation destination for "Search" page
             NavigationDestination(
               selectedIcon: Icon(
-                MdiIcons.magnify,
+                MdiIcons.searchWeb,
                 size: 32,
                 color: Colors.black,
               ),
@@ -75,7 +80,7 @@ class _MainNavigationState extends State<MainNavigation> {
                 size: 32,
                 color: Colors.grey,
               ),
-              label: 'Search',
+              label: 'Budget',
             ),
 
             // Navigation destination for "Profile" page
@@ -90,12 +95,33 @@ class _MainNavigationState extends State<MainNavigation> {
                 size: 32,
                 color: Colors.grey,
               ),
-              label: 'Profile',
+              label: 'Goals',
+            ),
+
+            // Navigation destination for "Profile" page
+            NavigationDestination(
+              selectedIcon: Icon(
+                MdiIcons.prescription,
+                size: 32,
+                color: Colors.black,
+              ),
+              icon: Icon(
+                Icons.person_outline,
+                size: 32,
+                color: Colors.grey,
+              ),
+              label: 'Settings',
             ),
           ],
         ),
       ),
-      body: <Widget>[][currentPageIndex],
+      body: <Widget>[
+        HomeScreen(),
+        TransactionScreen(),
+        BudgetScreen(),
+        GoalScreen(),
+        SettingScreen()
+      ][currentPageIndex],
     );
   }
 }

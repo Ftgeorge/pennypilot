@@ -1,5 +1,6 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pennypilot/features/budget/budget_screen.dart';
 import 'package:pennypilot/features/goals/goals_screen.dart';
 import 'package:pennypilot/features/home/homescreen.dart';
@@ -21,14 +22,14 @@ class _MainNavigationState extends State<MainNavigation> {
       bottomNavigationBar: Container(
         color: Colors.transparent,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+          padding: const EdgeInsets.fromLTRB(20, 24, 20, 24),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildNavItem(MdiIcons.home, 0, 'Home'),
-              _buildNavItem(MdiIcons.cash, 1, 'Budget'),
-              _buildNavItem(MdiIcons.flag, 2, 'Goals'),
-              _buildNavItem(MdiIcons.usbFlashDrive, 3, 'Settings'),
+              _buildNavItem(FluentIcons.home_48_filled, 0, 'Home', 25),
+              _buildNavItem(FontAwesomeIcons.wallet, 1, 'Budget', 20),
+              _buildNavItem(FluentIcons.target_arrow_20_filled, 2, 'Goals', 25),
+              _buildNavItem(FontAwesomeIcons.gear, 3, 'Settings', 20),
             ],
           ),
         ),
@@ -42,7 +43,7 @@ class _MainNavigationState extends State<MainNavigation> {
     );
   }
 
-  Widget _buildNavItem(IconData icon, int index, String tooltip) {
+  Widget _buildNavItem(IconData icon, int index, String tooltip, double size) {
     final isSelected = currentPageIndex == index;
     return GestureDetector(
       onTap: () {
@@ -55,22 +56,23 @@ class _MainNavigationState extends State<MainNavigation> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Icon(
                 icon,
-                size: isSelected ? 28 : 28,
-                color: isSelected ? Colors.blue : Colors.grey,
+                size: size,
+                color: isSelected ? Color(0xFF8C9EFF) : Colors.grey,
               ),
               SizedBox(
-                width: 8,
+                width: 10,
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
+                padding: const EdgeInsets.fromLTRB(0, 2, 0, 0),
                 child: Text(
                   tooltip,
                   style: TextStyle(
-                      color: Colors.blue, fontSize: isSelected ? 13 : 0),
+                      color: Color(0xFF8C9EFF),
+                      fontSize: isSelected ? 14 : 0),
                 ),
               )
             ],

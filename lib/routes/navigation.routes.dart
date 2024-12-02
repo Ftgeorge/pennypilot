@@ -4,7 +4,6 @@ import 'package:pennypilot/features/budget/budget_screen.dart';
 import 'package:pennypilot/features/goals/goals_screen.dart';
 import 'package:pennypilot/features/home/homescreen.dart';
 import 'package:pennypilot/features/settings/settings_screen.dart';
-import 'package:pennypilot/features/transaction/transaction_screen.dart';
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});
@@ -20,108 +19,64 @@ class _MainNavigationState extends State<MainNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: Colors.grey,
-              width: 1.0,
-            ),
+        color: Colors.transparent,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(MdiIcons.home, 0, 'Home'),
+              _buildNavItem(MdiIcons.cash, 1, 'Budget'),
+              _buildNavItem(MdiIcons.flag, 2, 'Goals'),
+              _buildNavItem(MdiIcons.usbFlashDrive, 3, 'Settings'),
+            ],
           ),
-        ),
-        child: NavigationBar(
-          onDestinationSelected: (int index) {
-            setState(() {
-              currentPageIndex = index;
-            });
-          },
-          backgroundColor: Colors.white,
-          indicatorColor: Colors.white,
-          selectedIndex: currentPageIndex,
-          destinations: <Widget>[
-            // Navigation destination for "Home" page
-            NavigationDestination(
-              selectedIcon: Icon(
-                MdiIcons.home,
-                size: 32,
-                color: Colors.black,
-              ),
-              icon: Icon(
-                MdiIcons.home,
-                size: 32,
-                color: Colors.grey,
-              ),
-              label: 'Home',
-            ),
-
-            // Navigation destination for "Headlines" page
-            NavigationDestination(
-              selectedIcon: Icon(
-                MdiIcons.earth,
-                size: 32,
-                color: Colors.black,
-              ),
-              icon: Icon(
-                MdiIcons.earth,
-                size: 32,
-                color: Colors.grey,
-              ),
-              label: 'Transactions',
-            ),
-
-            // Navigation destination for "Search" page
-            NavigationDestination(
-              selectedIcon: Icon(
-                MdiIcons.searchWeb,
-                size: 32,
-                color: Colors.black,
-              ),
-              icon: Icon(
-                MdiIcons.magnify,
-                size: 32,
-                color: Colors.grey,
-              ),
-              label: 'Budget',
-            ),
-
-            // Navigation destination for "Profile" page
-            NavigationDestination(
-              selectedIcon: Icon(
-                Icons.person,
-                size: 32,
-                color: Colors.black,
-              ),
-              icon: Icon(
-                Icons.person_outline,
-                size: 32,
-                color: Colors.grey,
-              ),
-              label: 'Goals',
-            ),
-
-            // Navigation destination for "Profile" page
-            NavigationDestination(
-              selectedIcon: Icon(
-                MdiIcons.prescription,
-                size: 32,
-                color: Colors.black,
-              ),
-              icon: Icon(
-                Icons.person_outline,
-                size: 32,
-                color: Colors.grey,
-              ),
-              label: 'Settings',
-            ),
-          ],
         ),
       ),
       body: <Widget>[
         HomeScreen(),
-        TransactionScreen(),
         BudgetScreen(),
         GoalScreen(),
         SettingScreen()
       ][currentPageIndex],
+    );
+  }
+
+  Widget _buildNavItem(IconData icon, int index, String tooltip) {
+    final isSelected = currentPageIndex == index;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          currentPageIndex = index;
+        });
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Icon(
+                icon,
+                size: isSelected ? 28 : 28,
+                color: isSelected ? Colors.blue : Colors.grey,
+              ),
+              SizedBox(
+                width: 8,
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
+                child: Text(
+                  tooltip,
+                  style: TextStyle(
+                      color: Colors.blue, fontSize: isSelected ? 13 : 0),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

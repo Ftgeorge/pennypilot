@@ -8,8 +8,8 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  double screenWidth = 0; // Declare screenWidth
-  double screenHeight = 0; // Declare screenHeight
+  double screenWidth = 0;
+  double screenHeight = 0;
 
   List<Map<String, String>> slideData = [
     {

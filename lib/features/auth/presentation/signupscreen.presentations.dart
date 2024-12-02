@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:pennypilot/features/auth/presentation/forgotpassword.presentations.dart';
-import 'package:pennypilot/features/auth/presentation/signupscreen.presentations.dart';
+import 'package:pennypilot/features/auth/presentation/loginscreen.presentations.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,34 +34,20 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             height: 10,
           ),
-          ElevatedButton(onPressed: () {}, child: Text('Login')),
+          ElevatedButton(onPressed: () {}, child: Text('Signup')),
           GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SignupScreen(),
+                  builder: (context) => LoginScreen(),
                 ),
               );
             },
-            child: Text('Signup here'),
+            child: Text('Login here'),
           ),
           SizedBox(
             height: 2,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ForgotPasswordScreen(),
-                ),
-              );
-            },
-            child: Text('Forgot password'),
-          ),
-          SizedBox(
-            height: 10,
           ),
         ],
       ),

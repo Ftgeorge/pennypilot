@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
+import 'package:pennypilot/features/auth/presentation/loginscreen.presentations.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -11,17 +12,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     {
       "image": "assets/slide1.png",
       "title": "Take Charge of Your Finances",
-      "description": "Simplify expense tracking, set smart savings goals, and gain financial clarity."
+      "description":
+          "Simplify expense tracking, set smart savings goals, and gain financial clarity."
     },
     {
       "image": "assets/slide2.png",
       "title": "Track Expenses Effortlessly",
-      "description": "Connect your bank accounts and let us categorize your spending automatically."
+      "description":
+          "Connect your bank accounts and let us categorize your spending automatically."
     },
     {
       "image": "assets/slide3.png",
       "title": "Achieve Your Goals Faster",
-      "description": "Set personalized savings targets and watch your progress in real time."
+      "description":
+          "Set personalized savings targets and watch your progress in real time."
     },
     {
       "image": "assets/slide3.png",
@@ -57,7 +61,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: IntroSlider(
               slides: slides,
               onDonePress: () {
-                Navigator.pushReplacementNamed(context, '/home');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => LoginScreen()));
               },
               showSkipBtn: true,
               renderNextBtn: Text("Next"),
@@ -72,7 +79,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget _buildSlideContent(String imagePath, String title, String description) {
+  Widget _buildSlideContent(
+      String imagePath, String title, String description) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Column(

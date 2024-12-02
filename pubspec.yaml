@@ -65,6 +65,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/logo.png
+    - assets/images/money.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -78,10 +79,21 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/montserrat/MontserratAlternates-ExtraBold.ttf
+          weight: 900
+        - asset: assets/fonts/montserrat/MontserratAlternates-Bold.ttf
+          weight: 800
+        - asset: assets/fonts/montserrat/MontserratAlternates-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/montserrat/MontserratAlternates-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/montserrat/MontserratAlternates-Medium.ttf
+          weight: 300
+        - asset: assets/fonts/montserrat/MontserratAlternates-Light.ttf
+          weight: 200
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

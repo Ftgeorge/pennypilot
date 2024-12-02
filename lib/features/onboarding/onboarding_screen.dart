@@ -8,34 +8,46 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  double screenWidth = 0; // Declare screenWidth
+  double screenHeight = 0; // Declare screenHeight
+
   List<Map<String, String>> slideData = [
     {
-      "image": "assets/slide1.png",
+      "header": "assets/images/logo.png",
+      "image": "assets/images/money.png",
       "title": "Take Charge of Your Finances",
       "description":
-          "Simplify expense tracking, set smart savings goals, and gain financial clarity."
+          "Empower yourself to manage finances by tracking expenses and setting personalized savings goals for clarity and confidence."
     },
     {
+      "header": "assets/images/logo.png",
       "image": "assets/slide2.png",
       "title": "Track Expenses Effortlessly",
       "description":
-          "Connect your bank accounts and let us categorize your spending automatically."
+          "Link your bank accounts to automatically monitor and categorize spending, gaining insights into financial habits."
     },
     {
+      "header": "assets/images/logo.png",
       "image": "assets/slide3.png",
       "title": "Achieve Your Goals Faster",
       "description":
-          "Set personalized savings targets and watch your progress in real time."
+          "Set clear savings objectives and receive reminders to stay inspired and focused on financial aspirations."
     },
     {
-      "image": "assets/slide3.png",
+      "header": "assets/images/logo.png",
+      "image": "assets/slide4.png",
       "title": "Get Started",
-      "description": "Sign up and start using the app right away!"
-    },
+      "description":
+          "Join our community by signing up today and easily linking your bank account to manage your finances."
+    }
   ];
 
   @override
   Widget build(BuildContext context) {
+    // Initialize screenWidth and screenHeight here
+    screenHeight = MediaQuery.of(context).size.height;
+    screenWidth = MediaQuery.of(context).size.width;
+
     List<Slide> slides = slideData.map((slide) {
       return Slide(
         widgetTitle: _buildSlideContent(
@@ -48,30 +60,46 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     }).toList();
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: 50), // Add some top padding for the logo
-          Image.asset(
-            "assets/images/logo.png", // Replace with your image path
-            height: 80, // Adjust height for the logo
-            fit: BoxFit.contain,
-          ),
-          SizedBox(height: 20), // Space between logo and slides
-          Expanded(
+          Container(
+            height: screenHeight * 0.9,
             child: IntroSlider(
               slides: slides,
               onDonePress: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => LoginScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
               },
               showSkipBtn: true,
-              renderNextBtn: Text("Next"),
-              renderSkipBtn: Text("Skip"),
-              renderDoneBtn: Text("Done"),
-              colorDot: Colors.grey,
-              colorActiveDot: Colors.blue,
+              renderNextBtn: Text(
+                "Next",
+                style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xFF4A5DCC)),
+              ),
+              renderSkipBtn: Text(
+                "Skip",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w400,
+                  color: Color.fromARGB(255, 70, 70, 70),
+                ),
+              ),
+              renderDoneBtn: Text(
+                "Done",
+                style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xFF4A5DCC)),
+              ),
+              colorDot: Color(0x808C9EFF),
+              colorActiveDot: Color(0xBF8C9EFF),
             ),
           ),
         ],
@@ -81,29 +109,45 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Widget _buildSlideContent(
       String imagePath, String title, String description) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
+    return Container(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(imagePath, height: 200), // Slide image
-          SizedBox(height: 20),
+          Container(
+            width: screenWidth * 0.9,
+            height: screenHeight * 0.05,
+            child: Image.asset('assets/images/logo.png'),
+          ),
+          SizedBox(height: 60),
+          Container(
+            child: Image.asset(
+              imagePath,
+              height: screenHeight * 0.3,
+              width: screenWidth * 0.7,
+            ),
+          ),
+          SizedBox(height: 60),
           Text(
             title,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 24,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
+                fontSize: 20,
+                color: Color(0xFF4A5DCC),
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w900),
           ),
           SizedBox(height: 10),
-          Text(
-            description,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 15,
-              color: Colors.black,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+            child: Text(
+              description,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.black,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w400),
             ),
           ),
         ],
